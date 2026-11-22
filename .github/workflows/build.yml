@@ -32,11 +32,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install NDK 27 (Android only)
+        if: matrix.config.target == 'Android32' || matrix.config.target == 'Android64'
+        run: yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "ndk;27.3.13750724"
+
       - name: Build the mod
         uses: geode-sdk/build-geode-mod@main
         with:
           combine: true
           target: ${{ matrix.config.target }}
+          android-ndk-version: 27.3.13750724
 
   package:
     name: Package builds
