@@ -4,7 +4,7 @@ using namespace geode::prelude;
 
 PacksPopup* PacksPopup::create() {
 	auto ret = new PacksPopup();
-	if (ret->initAnchored(340.f, 240.f)) {
+	if (ret->init()) {
 		ret->autorelease();
 		return ret;
 	}
@@ -12,7 +12,8 @@ PacksPopup* PacksPopup::create() {
 	return nullptr;
 }
 
-bool PacksPopup::setup() {
+bool PacksPopup::init() {
+	if (!Popup::init(340.f, 240.f)) return false;
 	this->setTitle("Texture Packs");
 	m_packs = packs::scan();
 

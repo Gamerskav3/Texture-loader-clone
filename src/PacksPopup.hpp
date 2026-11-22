@@ -3,12 +3,12 @@
 #include <Geode/ui/ScrollLayer.hpp>
 #include "Packs.hpp"
 
-class PacksPopup : public geode::Popup<> {
+class PacksPopup : public geode::Popup {
 protected:
 	std::vector<Pack> m_packs;
 	geode::ScrollLayer* m_scroll = nullptr;
 
-	bool setup() override;
+	bool init();
 	void refresh();
 	void onToggle(cocos2d::CCObject* sender);
 	void onMove(cocos2d::CCObject* sender);
